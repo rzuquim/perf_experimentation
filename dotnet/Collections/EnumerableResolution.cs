@@ -58,13 +58,18 @@ public class EnumerableResolution
         BigClass,
     }
 
-    public class SmallStruct
+    public struct SmallStruct
     {
-        public int Id { get; init; }
-        public string Name { get; init; } = null!;
-        public double Price { get; init; }
-        public bool IsAvailable { get; init; }
-        public char Symbol { get; init; }
+        public SmallStruct(int id, string name, double price, bool isAvailable, char symbol)
+        {
+            (Id, Name, Price, IsAvailable, Symbol) = (id, name, price, isAvailable, symbol);
+        }
+
+        public int Id { get; }
+        public string Name { get; }
+        public double Price { get; }
+        public bool IsAvailable { get; }
+        public char Symbol { get; }
     }
 
     public class SmallClass
@@ -164,14 +169,13 @@ public class EnumerableResolution
     {
         for (int i = 0; i < n; i++)
         {
-            yield return new SmallStruct
-            {
-                Id = i,
-                Name = $"Name {i:N5}",
-                Price = Math.Round(_random.NextDouble() * 100, 2),
-                IsAvailable = _random.Next(2) == 0,
-                Symbol = (char)_random.Next(65, 91),
-            };
+            yield return new SmallStruct(
+                id: i,
+                name: $"Name {i:N5}",
+                price: Math.Round(_random.NextDouble() * 100, 2),
+                isAvailable: _random.Next(2) == 0,
+                symbol: (char)_random.Next(65, 91)
+            );
         }
     }
 
