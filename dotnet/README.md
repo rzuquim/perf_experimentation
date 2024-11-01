@@ -19,3 +19,10 @@
 - For an `string` key the array wins until N = 30~40
 - For an `case insensitive string` key the array wins until N = 30~40
 
+## Sealed class benefits - using net8.0
+
+> Q: What is the performance benefit on using sealed classes.
+
+- None if you are not using abstract classes or virtual methods shenanigans in the first place.
+- If you must use these "features" there is a ~20% penalty.
+
